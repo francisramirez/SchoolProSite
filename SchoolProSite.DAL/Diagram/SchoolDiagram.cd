@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SchoolProSite.DAL.Core.PersonBase">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="SchoolProSite.DAL.Core.BaseEntity" ManuallyRouted="true">
+      <Path>
+        <Point X="2.25" Y="1.25" />
+        <Point X="2.25" Y="1.665" />
+        <Point X="3.09" Y="1.665" />
+        <Point X="3.09" Y="2" />
+        <Point X="4.177" Y="2" />
+        <Point X="4.177" Y="1.179" />
+        <Point X="7.25" Y="1.179" />
+        <Point X="7.25" Y="1.925" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Core\PersonBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolProSite.DAL.Core.BaseEntity">
+    <Position X="1.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAkAAAACAAAAAACABAAAAAAAA=</HashCode>
+      <FileName>Core\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolProSite.DAL.Entities.Student">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolProSite.DAL.Entities.Instructor">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Instructor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolProSite.DAL.Entities.Course">
+    <Position X="1" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAEAIAAAIAAgEAAAgACAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolProSite.DAL.Entities.Department">
+    <Position X="3.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAEAAAAAAAAAAFAAgAA=</HashCode>
+      <FileName>Entities\Department.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
