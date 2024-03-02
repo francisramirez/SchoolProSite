@@ -23,14 +23,16 @@ namespace SchoolProSite.DAL.Dao
             return this.context.Departments.Any(filter);
         }
 
-        public Department GetDepartment(int Id)
+        public Department? GetDepartment(int Id)
         {
             return this.context.Departments.Find(Id);
         }
 
         public List<Department> GetDepartments()
         {
-            return this.context.Departments.ToList();
+            return this.context.Departments
+                               .OrderByDescending(depto => depto.CreationDate)
+                               .ToList();
         }
 
         public List<Department> GetDepartments(Func<Department, bool> filter)
@@ -74,6 +76,10 @@ namespace SchoolProSite.DAL.Dao
 
             Department departmentToUpdate = this.GetDepartment(department.DepartmentId);
 
+            if (departmentToUpdate is null)
+                throw new DaoDepartmentException("El departamento no se encuentra registrado.");
+            
+
             departmentToUpdate.ModifyDate = department.ModifyDate;
             departmentToUpdate.Name = department.Name;
             departmentToUpdate.StartDate = department.StartDate;
@@ -114,6 +120,10 @@ namespace SchoolProSite.DAL.Dao
                 {
                     message = "El departamento ya encuentra registrado";
                     return result;
+                }
+                else
+                {
+                    result = true;
                 }
 
             }
