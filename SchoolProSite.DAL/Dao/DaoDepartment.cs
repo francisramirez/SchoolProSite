@@ -30,9 +30,18 @@ namespace SchoolProSite.DAL.Dao
 
         public List<Department> GetDepartments()
         {
-            return this.context.Departments
-                               .OrderByDescending(depto => depto.CreationDate)
-                               .ToList();
+
+            //var query = (from depto in this.context.Departments
+            //            where depto.Deleted == false
+            //            orderby depto.CreationDate descending
+            //            select depto).ToList();
+
+
+            //return query;
+
+           return this.context.Departments.Where(depto => depto.Deleted == false)
+                           .OrderByDescending(depto => depto.CreationDate)
+                           .ToList();
         }
 
         public List<Department> GetDepartments(Func<Department, bool> filter)

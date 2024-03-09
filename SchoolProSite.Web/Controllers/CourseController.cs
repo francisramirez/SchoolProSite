@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SchoolProSite.DAL.Interfaces;
 using SchoolProSite.Web.Models;
 
@@ -8,10 +9,12 @@ namespace SchoolProSite.Web.Controllers
     public class CourseController : Controller
     {
         private readonly IDaoCourse daoCourse;
+        private readonly IDaoDepartment daoDepartment;
 
-        public CourseController(IDaoCourse daoCourse)
+        public CourseController(IDaoCourse daoCourse, IDaoDepartment daoDepartment)
         {
             this.daoCourse = daoCourse;
+            this.daoDepartment = daoDepartment;
         }
         // GET: CourseController
         public ActionResult Index()
@@ -34,16 +37,40 @@ namespace SchoolProSite.Web.Controllers
         // GET: CourseController/Create
         public ActionResult Create()
         {
+
+
+
+
+            var deparmentList = this.daoDepartment.GetDepartments()
+                                                .Select(cd => new DepartmentList()
+                                                {
+                                                    DepartmentId = cd.DepartmentId,
+                                                    Name = cd.Name
+                                                })
+                                                .ToList();
+
+            ViewData["Deparments"] = new SelectList(deparmentList, "DepartmentId", "Name");
+
             return View();
         }
 
         // POST: CourseController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CourseModel courseModel)
         {
             try
             {
+                this.daoCourse.SaveCourse(new DAL.Entities.Course()
+                {
+                    CreationDate = DateTime.Now,
+                    CreationUser = 1,
+                    Title = courseModel.Title,
+                    Credits = courseModel.Credits,
+                    DepartmentId = courseModel.DepartmentId 
+
+                });
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -55,16 +82,41 @@ namespace SchoolProSite.Web.Controllers
         // GET: CourseController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var course = this.daoCourse.GetCourse(id);
+
+            CourseModel courseModel = new CourseModel(course);
+
+
+            var deparmentList = this.daoDepartment.GetDepartments()
+                                                  .Select(cd => new DepartmentList()
+                                                  {
+                                                      DepartmentId = cd.DepartmentId,
+                                                      Name = cd.Name
+                                                  })
+                                                  .ToList();
+
+            ViewData["Deparments"] = new SelectList(deparmentList, "DepartmentId", "Name");
+
+            return View(courseModel);
         }
 
         // POST: CourseController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(CourseModel courseModel)
         {
             try
             {
+                this.daoCourse.UpdateCourse(new DAL.Entities.Course()
+                {
+                    CourseId = courseModel.CourseId,
+                    ModifyDate = DateTime.Now,
+                    DepartmentId = courseModel.DepartmentId,
+                    Credits = courseModel.Credits,
+                    UserMod = 1,
+                    Title = courseModel.Title
+                });
+
                 return RedirectToAction(nameof(Index));
             }
             catch

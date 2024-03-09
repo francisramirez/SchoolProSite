@@ -19,7 +19,7 @@ namespace SchoolProSite.Web.Models
         }
         public int CourseId { get; set; }
         public string? Title { get; set; }
-        public decimal Credits { get; set; }
+        public int Credits { get; set; }
 
         public int DepartmentId { get; set; }
         public string? DepartmentName { get; set; }
