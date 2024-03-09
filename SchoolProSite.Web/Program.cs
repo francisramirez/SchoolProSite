@@ -16,7 +16,7 @@ builder.Services.AddDbContext<SchoolContext>(options =>
 #region "Registro de Componentes Daos"
 
 builder.Services.AddTransient<IDaoDepartment, DaoDepartment>();
-
+builder.Services.AddTransient<IDaoCourse, DaoCourse>();
 
 #endregion
 

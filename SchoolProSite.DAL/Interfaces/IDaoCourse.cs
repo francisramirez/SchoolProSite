@@ -1,4 +1,5 @@
 ﻿using SchoolProSite.DAL.Entities;
+using SchoolProSite.DAL.Models;
 
 namespace SchoolProSite.DAL.Interfaces
 {
@@ -7,9 +8,11 @@ namespace SchoolProSite.DAL.Interfaces
         void SaveCourse(Course Course);
         void UpdateCourse(Course Course);
         void RemoveCourse(Course Course);
-        Course GetCourse(int Id);
-        List<Course> GetCourses();
-        List<Course> GetCourses(Func<Course, bool> filter);
+        CourseDaoModel GetCourse(int Id);
+        List<CourseDaoModel> GetCourses();
+        List<CourseDaoModel> GetCourses(Func<Course, bool> filter);
         bool ExistsCourse(Func<Course, bool> filter);
+
+         
     }
 }
