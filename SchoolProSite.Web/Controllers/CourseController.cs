@@ -16,7 +16,7 @@ namespace SchoolProSite.Web.Controllers
         // GET: CourseController
         public ActionResult Index()
         {
-            var courses = this.daoCourse.GetCourses().Select(cd => new Models.CourseModel(cd));
+            var courses = this.daoCourse.GetCourses().Select(cd => new CourseModel(cd));
 
             return View(courses);
         }
@@ -24,7 +24,11 @@ namespace SchoolProSite.Web.Controllers
         // GET: CourseController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var course = this.daoCourse.GetCourse(id);
+
+            CourseModel courseModel = new CourseModel(course);
+
+            return View(courseModel);
         }
 
         // GET: CourseController/Create
