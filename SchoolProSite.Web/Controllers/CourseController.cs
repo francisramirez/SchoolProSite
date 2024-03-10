@@ -65,7 +65,7 @@ namespace SchoolProSite.Web.Controllers
                 {
                     CreationDate = DateTime.Now,
                     CreationUser = 1,
-                    Title = courseModel.Title,
+                    Title = courseModel?.Title,
                     Credits = courseModel.Credits,
                     DepartmentId = courseModel.DepartmentId 
 
